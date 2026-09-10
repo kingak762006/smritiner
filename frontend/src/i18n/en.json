@@ -1,0 +1,64 @@
+{
+  "app_name": "SmritiNER",
+  "app_subtitle": "Statewide Cognitive & Memory Platform for All",
+  "role_elderly": "Player & Citizen Mode",
+  "role_caregiver": "Family & Health Portal",
+  "role_research": "Research & Analytics",
+  "term_grandmother": "Grandmother",
+  "term_grandfather": "Grandfather",
+  "term_elders": "Citizens of All Ages",
+  "welcome_elderly": "Welcome! Challenge your memory, focus, and brain fitness with cultural games for everyone across the state.",
+  "voice_guidance": "Voice Guide",
+  "voice_on": "Voice ON",
+  "voice_off": "Voice OFF",
+  "status_online": "ONLINE",
+  "status_offline": "OFFLINE",
+  "status_syncing": "SYNCING...",
+  "offline_mode_toggle": "Simulate Offline Mode",
+  "btn_back_home": "Back to Home",
+  "btn_restart": "Restart Activity",
+  "btn_play": "Start Activity",
+  "btn_hint": "Show Gentle Hint",
+  "btn_submit": "Check Answer",
+  "btn_next": "Next Question",
+  "score_label": "Performance Score",
+  "difficulty_level": "Difficulty Level",
+  "encouragement_great": "Wonderful! You did beautifully!",
+  "encouragement_retry": "Good try! Let us try once more together.",
+  "reminders_heading": "Daily Health & Routine Reminders",
+  "reminders_mark_done": "Mark Completed",
+  "reminders_snooze": "Remind in 10 mins",
+  "disclaimer_text": "Prototype / Synthetic Demonstration Data — For cognitive training & performance-based adaptation. Not clinical evidence.",
+  "games": {
+    "memory_matching": {
+      "title": "Memory Matching",
+      "subtitle": "State Cultural Symbols",
+      "desc": "Train visual memory by matching pairs of iconic cultural, musical, and environmental symbols from across the state.",
+      "prompt": "Find and tap the matching pairs of traditional symbols."
+    },
+    "sequence_recall": {
+      "title": "Sequence Recall",
+      "subtitle": "Festive Rhythms & Beats",
+      "desc": "Boost working memory and rhythm by reproducing sequences of traditional musical instruments.",
+      "prompt": "Remember the musical sequence and tap the instruments in order."
+    },
+    "pattern_recognition": {
+      "title": "Pattern Recognition",
+      "subtitle": "Handloom & Wildlife Motifs",
+      "desc": "Sharpen visual perception and motif discrimination with traditional handloom, flora, and wildlife patterns.",
+      "prompt": "Identify the exact matching cultural motif from the options below."
+    },
+    "attention_concentration": {
+      "title": "Attention Focus",
+      "subtitle": "Speed & Focus Challenge",
+      "desc": "Test reaction speed and sustained focus by spotting the target symbols while filtering out distractions.",
+      "prompt": "Tap the target symbol swiftly whenever it appears on screen."
+    },
+    "daily_routine": {
+      "title": "Daily Routine Recall",
+      "subtitle": "Healthy Habits & Schedule",
+      "desc": "Strengthen chronological planning and executive function by ordering healthy daily living habits.",
+      "prompt": "Arrange the daily activities in chronological sequence from morning to evening."
+    }
+  }
+}

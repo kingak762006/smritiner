@@ -1,0 +1,247 @@
+{
+  "categories": {
+    "household_and_festive": [
+      {
+        "id": "jaapi",
+        "name_en": "Jaapi",
+        "name_as": "জাপী",
+        "name_hi": "जापी",
+        "name_mr": "जापी (बांबूची टोपी)",
+        "category": "household_and_festive",
+        "symbol": "👒",
+        "description_en": "Traditional conical bamboo and cane hat with colorful woven patterns, a symbol of honor and protection in Assam.",
+        "description_as": "অসমৰ ঐতিহ্যমণ্ডিত বাঁহ আৰু বেতৰ ফুলাম টুপি, সন্মান আৰু কৃষ্টিৰ প্ৰতীক।"
+      },
+      {
+        "id": "gamosa",
+        "name_en": "Gamosa",
+        "name_as": "গামোচা",
+        "name_hi": "गमोसा",
+        "name_mr": "गमोसा (पारंपरिक शेला)",
+        "category": "household_and_festive",
+        "symbol": "🧣",
+        "description_en": "White handwoven cotton scarf with red floral borders, presented with deep respect to elders.",
+        "description_as": "অসমৰ মৰম আৰু শ্ৰদ্ধাৰ প্ৰতীক ৰঙা ফুলৰ পাৰি থকা বগা সূতাৰ কাপোৰ।"
+      },
+      {
+        "id": "dhol",
+        "name_en": "Bihu Dhol",
+        "name_as": "ঢোল",
+        "name_hi": "बिहू ढोल",
+        "name_mr": "बिहू ढोल",
+        "category": "household_and_festive",
+        "symbol": "🥁",
+        "description_en": "Traditional two-headed drum carved from wood, providing the heartbeat of Bohag Bihu festivities.",
+        "description_as": "কাঠ আৰু চামৰাৰে নিৰ্মিত বিহুৰ প্ৰধান বাদ্য।"
+      },
+      {
+        "id": "pepa",
+        "name_en": "Pepa Horn",
+        "name_as": "পেঁপা",
+        "name_hi": "पेपा",
+        "category": "household_and_festive",
+        "symbol": "🎺",
+        "description_en": "Traditional reed musical instrument fashioned from buffalo horn and bamboo reed.",
+        "description_as": "ম'হৰ শিঙেৰে নিৰ্মিত বিহুৰ সুৰীয়া সুহুৰি বাদ্য।"
+      },
+      {
+        "id": "xorai",
+        "name_en": "Xorai",
+        "name_as": "শৰাই",
+        "name_hi": "शराई",
+        "category": "household_and_festive",
+        "symbol": "🏆",
+        "description_en": "Traditional brass/bell-metal offering tray on a pedestal, used for offering betel nuts and honoring guests.",
+        "description_as": "পিতল অথবা কাঁহেৰে নিৰ্মিত সন্মানীয় নৈবেদ্য আৰু অভ্যৰ্থনাৰ পাত্ৰ।"
+      },
+      {
+        "id": "taal",
+        "name_en": "Bhortaal (Cymbals)",
+        "name_as": "ভৰতাল",
+        "name_hi": "ताल",
+        "category": "household_and_festive",
+        "symbol": "🔔",
+        "description_en": "Large resonant bell-metal cymbals played during spiritual devotional songs (Naam-Kirtan).",
+        "description_as": "নাম-কীৰ্তন আৰু আধ্যাত্মিক পৰিৱেশনত ব্যৱহৃত কাঁহৰ তাল।"
+      },
+      {
+        "id": "flute",
+        "name_en": "Bamboo Flute (Bahi)",
+        "name_as": "বাঁহী",
+        "name_hi": "बांसुरी",
+        "category": "household_and_festive",
+        "symbol": "🪈",
+        "description_en": "Mellow tuned bamboo flute widely played across folk traditions of the North East.",
+        "description_as": "গাঁৱৰ সেউজীয়া পৰিৱেশত সুৰ তোলা সুৱলা বাঁহৰ বাঁহী।"
+      },
+      {
+        "id": "gagana",
+        "name_en": "Gogona",
+        "name_as": "গগনা",
+        "name_hi": "गगना",
+        "category": "household_and_festive",
+        "symbol": "🎵",
+        "description_en": "Vibrating jaw harp crafted from seasoned bamboo, played gently between teeth by Bihu dancers.",
+        "description_as": "পকা বাঁহেৰে নিৰ্মিত নাচনীৰ দাঁতেৰে বজোৱা সুৰীয়া গগনা।"
+      }
+    ],
+    "nature_and_agriculture": [
+      {
+        "id": "kaji_nemu",
+        "name_en": "Kaji Nemu (Assam Lemon)",
+        "name_as": "কাজী নেমু",
+        "name_hi": "काजी नेमु",
+        "category": "nature_and_agriculture",
+        "symbol": "🍋",
+        "description_en": "GI-tagged elongated aromatic lemon from Assam with juicy, refreshing culinary value.",
+        "description_as": "সুগন্ধি আৰু ঔষধীয় গুণেৰে ভৰপূৰ অসমৰ বিখ্যাত কাজী নেমু।"
+      },
+      {
+        "id": "tea_leaves",
+        "name_en": "Golden Tea Leaves",
+        "name_as": "সোণালী চাহ পাত",
+        "name_hi": "चाय पत्ती",
+        "category": "nature_and_agriculture",
+        "symbol": "🍃",
+        "description_en": "Two leaves and a bud, the prized harvest of lush Brahmaputra valley tea estates.",
+        "description_as": "অসমৰ সেউজীয়া বাগিচাৰ সুবাসভৰা দুটি পাত এটি কলি।"
+      },
+      {
+        "id": "rhino",
+        "name_en": "One-Horned Rhino",
+        "name_as": "এশিঙীয়া গঁড়",
+        "name_hi": "एक सींग वाला गैंडा",
+        "category": "nature_and_agriculture",
+        "symbol": "🦏",
+        "description_en": "Majestic Indian one-horned rhinoceros grazing peacefully in Kaziranga National Park grasslands.",
+        "description_as": "কাজিৰঙাৰ গৌৰৱ এশিঙীয়া প্ৰকাণ্ড গঁড়।"
+      },
+      {
+        "id": "hornbill",
+        "name_en": "Great Hornbill",
+        "name_as": "ধনেশ পক্ষী",
+        "name_hi": "धनेश पक्षी",
+        "category": "nature_and_agriculture",
+        "symbol": "🦜",
+        "description_en": "Magnificent rainforest bird celebrated across Nagaland and Arunachal cultural folklore.",
+        "description_as": "উত্তৰ-পূৰ্বাঞ্চলৰ পাহাৰৰ সুন্দৰ আৰু পৱিত্ৰ ধনেশ চৰাই।"
+      },
+      {
+        "id": "muga_silk",
+        "name_en": "Muga Golden Silk",
+        "name_as": "মুগা ৰেচম",
+        "name_hi": "मूगा सिल्क",
+        "category": "nature_and_agriculture",
+        "symbol": "🧵",
+        "description_en": "Endemic natural shimmering golden silk produced by the Antheraea assamensis silkworm.",
+        "description_as": "কেৱল অসমতেই পোৱা প্ৰাকৃতিক সোণালী আভাৰ বিশ্ববিখ্যাত মুগা সূতা।"
+      },
+      {
+        "id": "bamboo_shoot",
+        "name_en": "Tender Bamboo Shoot",
+        "name_as": "বাঁহ গাজ",
+        "name_hi": "बांस का कोपल",
+        "category": "nature_and_agriculture",
+        "symbol": "🎋",
+        "description_en": "Tender edible bamboo shoot cherished across indigenous culinary dishes of the North East.",
+        "description_as": "উত্তৰ-পূৰ্বাঞ্চলৰ পৰম্পৰাগত ব্যঞ্জনৰ সুস্বাদু কোমল বাঁহ গাজ।"
+      },
+      {
+        "id": "phumdi",
+        "name_en": "Loktak Lake Phumdi",
+        "name_as": "লোকটাকৰ ফুমদি",
+        "name_hi": "लोकटक फुमदी",
+        "category": "nature_and_agriculture",
+        "symbol": "🏝️",
+        "description_en": "Unique floating biomass islands of Manipur's Loktak Lake, home to the Sangai deer.",
+        "description_as": "মণিপুৰৰ লোকটাক হ্ৰদৰ পানীত ওপঙি থকা অনন্য উদ্ভিদৰ দ্বীপ।"
+      }
+    ],
+    "daily_routines": [
+      {
+        "id": "step_morning_water",
+        "order": 1,
+        "name_en": "Morning Warm Water",
+        "name_as": "ৰাতিপুৱা কুহুমীয়া পানী",
+        "name_hi": "सुबह गुनगुना पानी",
+        "time_slot": "06:30 AM",
+        "symbol": "🥛",
+        "category": "hydration",
+        "voice_cue_en": "Drinking warm water cleanses the body and aids gentle digestion.",
+        "voice_cue_as": "ৰাতিপুৱা এগিলাচ কুহুমীয়া পানী খালে শৰীৰ স্নিগ্ধ আৰু সুস্থ থাকে।"
+      },
+      {
+        "id": "step_morning_medicine",
+        "order": 2,
+        "name_en": "Morning Blood Pressure & Heart Medicine",
+        "name_as": "ৰাতিপুৱাৰ ঔষধ সেৱন",
+        "name_hi": "सुबह की दवा",
+        "time_slot": "07:15 AM",
+        "symbol": "💊",
+        "category": "medication",
+        "voice_cue_en": "Taking prescribed morning medicines on time keeps blood pressure steady.",
+        "voice_cue_as": "সময় মতে পুৱাৰ ঔষধ খাই ৰক্তচাপ নিয়ন্ত্ৰণত ৰাখক।"
+      },
+      {
+        "id": "step_morning_tea",
+        "order": 3,
+        "name_en": "Assam Tea & Warm Pitha / Toast",
+        "name_as": "গৰম চাহ আৰু তিল পিঠা",
+        "name_hi": "असम चाय और नाश्ता",
+        "time_slot": "08:00 AM",
+        "symbol": "🍵",
+        "category": "meal",
+        "voice_cue_en": "Enjoy a comforting cup of warm Assam tea with soft breakfast.",
+        "voice_cue_as": "পুৱাৰ সুস্বাদু ৰঙা চাহ আৰু পিঠাৰে সুখদায়ক আহাৰ গ্ৰহণ কৰক।"
+      },
+      {
+        "id": "step_garden_walk",
+        "order": 4,
+        "name_en": "Gentle Courtyard or Garden Walk",
+        "name_as": "চোতাল অথবা বাৰীত খোজ কঢ়া",
+        "name_hi": "आँगन में टहलना",
+        "time_slot": "09:00 AM",
+        "symbol": "🚶",
+        "category": "activity",
+        "voice_cue_en": "A 15-minute gentle walk in morning sunlight strengthens legs and lifts spirits.",
+        "voice_cue_as": "পুৱাৰ ৰ'দত বাৰীত অলপ খোজ কাঢ়িলে ভৰি সবল হয় আৰু মন প্ৰফুল্ল থাকে।"
+      },
+      {
+        "id": "step_afternoon_lunch",
+        "order": 5,
+        "name_en": "Wholesome Warm Lunch & Hydration",
+        "name_as": "দুপৰীয়াৰ পুষ্টিকৰ ভাত-আঞ্জা",
+        "name_hi": "दोपहर का भोजन",
+        "time_slot": "01:00 PM",
+        "symbol": "🍲",
+        "category": "meal",
+        "voice_cue_en": "Nutritious warm lunch with local vegetables and a glass of water.",
+        "voice_cue_as": "শাক-পাচলিৰে দুপৰীয়াৰ তৃপ্তিদায়ক পুষ্টিকৰ ভাত।"
+      },
+      {
+        "id": "step_evening_prayer",
+        "order": 6,
+        "name_en": "Evening Diya & Family Conversations",
+        "name_as": "সন্ধিয়া বন্তি প্ৰজ্বলন আৰু কথা-বতৰা",
+        "name_hi": "शाम की प्रार्थना और परिवार",
+        "time_slot": "06:30 PM",
+        "symbol": "🪔",
+        "category": "activity",
+        "voice_cue_en": "Lighting the evening lamp, breathing peacefully and conversing with grandchildren.",
+        "voice_cue_as": "সন্ধিয়া গধূলিৰ চাকি জ্বলাই পৰিয়ালৰ সতে শান্তিপূৰ্ণ কথোপকথন।"
+      },
+      {
+        "id": "step_night_rest",
+        "order": 7,
+        "name_en": "Evening Medicine & Peaceful Night Rest",
+        "name_as": "নিশাৰ ঔষধ আৰু শুই পৰা",
+        "name_hi": "रात की दवा और विश्राम",
+        "time_slot": "09:30 PM",
+        "symbol": "🛏️",
+        "category": "medication",
+        "voice_cue_en": "Evening medicine taken before lying down for 8 hours of peaceful rest.",
+        "voice_cue_as": "নিশাৰ ঔষধ গ্ৰহণ কৰি আৰামদায়ক আৰু গভীৰ টোপনিৰ প্ৰস্তুতি।"
+      }
+    ]
+  }
+}

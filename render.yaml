@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: smriti-ner-backend
+    runtime: docker
+    dockerfilePath: Dockerfile.backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////app/backend/smriti_ner.db
+      - key: CORS_ORIGINS
+        value: "*"
+
+  - type: web
+    name: smriti-ner-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
