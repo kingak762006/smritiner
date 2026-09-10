@@ -1,0 +1,7 @@
+backend/
+ml/
+data/
+docs/
+Dockerfile.*
+docker-compose.yml
+run_*
