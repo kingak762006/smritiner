@@ -49,6 +49,17 @@ def startup_event():
     seed_demonstration_database()
 
 
+@app.get("/", tags=["Root"])
+def root():
+    return {
+        "service": "SmritiNER Backend API",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health",
+        "endpoints": settings.API_V1_STR
+    }
+
+
 @app.get("/health", tags=["System Health"])
 def health_check():
     """
