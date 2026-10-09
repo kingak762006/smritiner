@@ -16,8 +16,25 @@ export const api = {
         age_band: '70-79',
         preferred_language: 'as',
         caregiver_contact: 'Mridul B. (Son) / ASHA Worker Runjun (Morigaon PHC)',
-        cohort: 'adaptive'
+        cohort: 'adaptive',
+        has_dementia: true,
+        dementia_stage: 'Mild'
       };
+    }
+  },
+
+  async updateUserProfile(userId, updateData) {
+    try {
+      const res = await fetch(`${API_BASE}/users/${userId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateData)
+      });
+      if (!res.ok) throw new Error('Profile update failed');
+      return await res.json();
+    } catch (e) {
+      console.warn('[API] Profile update fallback locally:', e);
+      return { id: userId, ...updateData };
     }
   },
 

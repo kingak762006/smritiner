@@ -9,9 +9,20 @@ class UserBase(BaseModel):
     preferred_language: Optional[str] = "as"
     caregiver_contact: Optional[str] = "PHC Caregiver"
     cohort: Optional[str] = "adaptive"
+    has_dementia: Optional[bool] = False
+    dementia_stage: Optional[str] = "None"
 
 class UserCreate(UserBase):
     id: Optional[str] = None
+
+class UserUpdate(BaseModel):
+    name_alias: Optional[str] = None
+    age_band: Optional[str] = None
+    preferred_language: Optional[str] = None
+    caregiver_contact: Optional[str] = None
+    cohort: Optional[str] = None
+    has_dementia: Optional[bool] = None
+    dementia_stage: Optional[str] = None
 
 class UserResponse(UserBase):
     id: str

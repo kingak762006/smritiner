@@ -5,12 +5,13 @@ import ElderlyHome from './pages/ElderlyHome';
 import CaregiverDashboard from './pages/CaregiverDashboard';
 import ResearchEvaluation from './pages/ResearchEvaluation';
 
-// 5 Functional Cognitive Games
+// 6 Functional Cognitive Activities
 import MemoryMatchGame from './games/MemoryMatchGame';
 import SequenceRecallGame from './games/SequenceRecallGame';
 import PatternRecognizeGame from './games/PatternRecognizeGame';
 import AttentionFocusGame from './games/AttentionFocusGame';
 import DailyRoutineGame from './games/DailyRoutineGame';
+import MathRuntimeGame from './games/MathRuntimeGame';
 
 export default function App() {
   const [currentRole, setCurrentRole] = useState('elderly'); // 'elderly', 'caregiver', 'research'
@@ -48,6 +49,9 @@ export default function App() {
     }
     if (activeGame === 'daily_routine') {
       return <DailyRoutineGame onBack={handleBackHome} userId="NER-PAT-4821" currentDifficulty={2} />;
+    }
+    if (activeGame === 'math_runtime') {
+      return <MathRuntimeGame onBack={handleBackHome} userId="NER-PAT-4821" currentDifficulty={2} />;
     }
 
     return <ElderlyHome onSelectGame={handleSelectGame} userId="NER-PAT-4821" />;

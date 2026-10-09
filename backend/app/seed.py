@@ -30,7 +30,9 @@ def seed_demonstration_database():
             age_band="70-79",
             preferred_language="as",
             caregiver_contact="Mridul B. (Son) / ASHA Worker Runjun (Morigaon PHC)",
-            cohort="adaptive"
+            cohort="adaptive",
+            has_dementia=True,
+            dementia_stage="Mild"
         )
         db.add(patient_adaptive)
 
@@ -41,7 +43,9 @@ def seed_demonstration_database():
             age_band="75-84",
             preferred_language="as",
             caregiver_contact="Geeta B. (Daughter) / Nagaon District Hospital",
-            cohort="fixed"
+            cohort="fixed",
+            has_dementia=True,
+            dementia_stage="Moderate"
         )
         db.add(patient_fixed)
         db.commit()

@@ -77,7 +77,7 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
       // Correct match!
       setIsCorrect(true);
       confetti({ particleCount: 50, spread: 60 });
-      voiceService.playGentleTone('success');
+      voiceService.playAudioAlert('victory');
 
       const duration = Math.max(3, Math.round((Date.now() - startTime) / 1000));
       const accuracy = attempts === 0 ? 1.0 : 0.65;
@@ -100,13 +100,27 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
         console.warn('API error:', e);
       }
     } else {
-      // Gentle incorrect notification
-      voiceService.playGentleTone('hint');
+      // Gentle incorrect notification audio alert
+      voiceService.playAudioAlert('warning');
       setIsCorrect(false);
       setTimeout(() => {
         setIsCorrect(null);
         setSelectedId(null);
       }, 900);
+    }
+  };
+
+  const handleVoiceInput = (text) => {
+    if (!text || isCorrect) return;
+    const lower = text.toLowerCase();
+    const matched = options.find(opt => 
+      lower.includes(opt.id.toLowerCase()) ||
+      lower.includes(opt.label_en.toLowerCase()) ||
+      lower.includes(opt.label_hi.toLowerCase()) ||
+      lower.includes(opt.label_as.toLowerCase())
+    );
+    if (matched) {
+      handleOptionSelect(matched);
     }
   };
 
@@ -172,7 +186,7 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
         </button>
       </div>
 
-      <VoicePrompt text={t('games.pattern_recognition.prompt')} />
+      <VoicePrompt text={t('games.pattern_recognition.prompt')} onVoiceInput={handleVoiceInput} />
 
       {/* Target Motif Display */}
       {targetMotif && (

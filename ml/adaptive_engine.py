@@ -69,6 +69,13 @@ class AdaptiveDifficultyEngine:
             3: {"steps_count": 5, "category": "full_day", "time_anchors": True, "hints_allowed": 1},
             4: {"steps_count": 6, "category": "full_day_distractors", "time_anchors": False, "hints_allowed": 1},
             5: {"steps_count": 7, "category": "precise_schedule", "time_anchors": False, "hints_allowed": 0},
+        },
+        "math_runtime": {
+            1: {"rounds": 5, "timer_s": 25, "operators": ["+"], "max_num": 10, "hints_allowed": 3},
+            2: {"rounds": 5, "timer_s": 20, "operators": ["+", "-"], "max_num": 20, "hints_allowed": 2},
+            3: {"rounds": 6, "timer_s": 18, "operators": ["+", "-"], "max_num": 30, "hints_allowed": 2},
+            4: {"rounds": 7, "timer_s": 15, "operators": ["+", "-", "*"], "max_num": 40, "hints_allowed": 1},
+            5: {"rounds": 8, "timer_s": 12, "operators": ["+", "-", "*"], "max_num": 50, "hints_allowed": 0},
         }
     }
 
@@ -136,6 +143,27 @@ class AdaptiveDifficultyEngine:
         )
         return float(np.clip(score, 0.0, 100.0))
 
+    @staticmethod
+    def get_initial_level_for_dementia(has_dementia: bool = False, dementia_stage: str = "None") -> int:
+        """
+        Calibrates starting difficulty baseline and maximum cognitive ceiling 
+        according to validated dementia severity categorization.
+        - Severe: Level 1 (ultra-simple visual matching, generous intervals)
+        - Moderate: Level 1 or 2
+        - Mild: Level 2
+        - None / Healthy: Level 3
+        """
+        stage = (dementia_stage or "").strip().capitalize()
+        if not has_dementia or stage in ["None", "No", "False"]:
+            return 3
+        if stage == "Severe":
+            return 1
+        elif stage == "Moderate":
+            return 1
+        elif stage == "Mild":
+            return 2
+        return 2
+
     def evaluate_session(
         self,
         game_type: str,
@@ -146,12 +174,15 @@ class AdaptiveDifficultyEngine:
         completed: bool,
         hints_used: int = 0,
         session_duration_s: float = 60.0,
-        history_scores: Optional[List[float]] = None
+        history_scores: Optional[List[float]] = None,
+        has_dementia: bool = False,
+        dementia_stage: str = "None"
     ) -> Dict[str, Any]:
         """
         Main decision engine entry point.
         Evaluates session metrics, calculates composite score, predicts next difficulty,
-        generates personalized game parameters, and outputs an explainable rationale.
+        generates personalized game parameters, and outputs an explainable rationale,
+        incorporating dementia clinical stage ceiling guardrails.
         """
         current_difficulty = max(1, min(5, current_difficulty))
         acc_pct = accuracy if accuracy > 1.0 else accuracy * 100.0
@@ -242,10 +273,26 @@ class AdaptiveDifficultyEngine:
                 rationale = f"ML model recommended Level {predicted_difficulty} based on high accuracy ({acc_pct:.0f}%) and speed stability."
             elif predicted_difficulty < current_difficulty:
                 adaptation_direction = "DECREASE"
-                rationale = f"ML model recommended Level {predicted_difficulty} to mitigate cognitive fatigue and error rate."
             else:
                 adaptation_direction = "MAINTAIN"
                 rationale = f"ML model recommended maintaining Level {current_difficulty} for consolidation."
+
+        # Apply Dementia Cognitive Ceiling Guardrails:
+        # Avoid causing anxiety, distress, or cognitive overload in patients with diagnosed dementia
+        stage_norm = (dementia_stage or "").strip().capitalize()
+        if has_dementia:
+            max_ceiling = 3
+            if stage_norm == "Severe":
+                max_ceiling = 1
+            elif stage_norm == "Moderate":
+                max_ceiling = 2
+            elif stage_norm == "Mild":
+                max_ceiling = 3
+
+            if predicted_difficulty > max_ceiling:
+                predicted_difficulty = max_ceiling
+                adaptation_direction = "MAINTAIN_DEMENTIA_CAP"
+                rationale += f" [Dementia Safety Protocol: Game level capped at {max_ceiling} for stage '{stage_norm}' to prevent frustration and preserve positive engagement.]"
 
         # Fetch parameter set for the target game and predicted level
         game_key = game_type.lower().replace(" ", "_")

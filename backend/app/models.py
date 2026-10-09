@@ -12,6 +12,8 @@ class User(Base):
     preferred_language = Column(String(16), default="as")   # "as", "hi", "en"
     caregiver_contact = Column(String(64), default="Dr. B. Barua / PHC Morigaon")
     cohort = Column(String(32), default="adaptive")         # "adaptive" or "fixed"
+    has_dementia = Column(Boolean, default=False)           # Clinical record indicator
+    dementia_stage = Column(String(32), default="None")     # "None", "Mild", "Moderate", "Severe"
     created_at = Column(DateTime, default=datetime.utcnow)
 
     sessions = relationship("GameSession", back_populates="user", cascade="all, delete-orphan")

@@ -121,6 +121,19 @@ export default function CaregiverDashboard({ userId = 'NER-PAT-4821' }) {
               <span style={{ background: '#D1FAE5', color: '#065F46', padding: '0.3rem 0.8rem', borderRadius: 'var(--radius-sm)', fontWeight: 800, fontSize: '0.9rem' }}>
                 {profile?.cohort?.toUpperCase()} COHORT
               </span>
+              <span style={{
+                background: profile?.has_dementia ? '#FEE2E2' : '#E0E7FF',
+                color: profile?.has_dementia ? '#991B1B' : '#3730A3',
+                padding: '0.3rem 0.8rem',
+                borderRadius: 'var(--radius-sm)',
+                fontWeight: 800,
+                fontSize: '0.9rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}>
+                {profile?.has_dementia ? `🧠 Dementia: ${profile?.dementia_stage || 'Diagnosed'}` : '🛡️ No Dementia Recorded'}
+              </span>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginTop: '0.25rem' }}>
               ID: <strong>{profile?.id}</strong> | Age: <strong>{profile?.age_band}</strong> | Language: <strong>{profile?.preferred_language?.toUpperCase()}</strong>
@@ -128,6 +141,67 @@ export default function CaregiverDashboard({ userId = 'NER-PAT-4821' }) {
             <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginTop: '0.15rem' }}>
               Primary Healthcare Contact: <strong>{profile?.caregiver_contact}</strong>
             </p>
+          </div>
+        </div>
+
+        {/* Dementia Clinical Record & Calibration Panel */}
+        <div style={{
+          background: 'var(--bg-surface-subtle)',
+          border: '2px dashed var(--border-strong)',
+          borderRadius: 'var(--radius-md)',
+          padding: '1rem 1.25rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.75rem',
+          minWidth: '280px'
+        }}>
+          <div style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span>🩺 Dementia Status Record:</span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 700 }}>Auto-tunes Level</span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={!!profile?.has_dementia}
+                onChange={async (e) => {
+                  const val = e.target.checked;
+                  const newStage = val ? (profile?.dementia_stage === 'None' ? 'Mild' : (profile?.dementia_stage || 'Mild')) : 'None';
+                  setProfile(prev => ({ ...prev, has_dementia: val, dementia_stage: newStage }));
+                  await api.updateUserProfile(userId, { has_dementia: val, dementia_stage: newStage });
+                }}
+                style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+              />
+              <span>Has Dementia</span>
+            </label>
+
+            {profile?.has_dementia && (
+              <select
+                value={profile?.dementia_stage || 'Mild'}
+                onChange={async (e) => {
+                  const st = e.target.value;
+                  setProfile(prev => ({ ...prev, dementia_stage: st }));
+                  await api.updateUserProfile(userId, { dementia_stage: st });
+                }}
+                style={{
+                  padding: '0.3rem 0.6rem',
+                  fontSize: '0.9rem',
+                  borderRadius: 'var(--radius-sm)',
+                  fontWeight: 700,
+                  border: '2px solid var(--border-strong)',
+                  background: 'white'
+                }}
+              >
+                <option value="Mild">Mild Stage (Max Level 3)</option>
+                <option value="Moderate">Moderate Stage (Max Level 2)</option>
+                <option value="Severe">Severe Stage (Max Level 1)</option>
+              </select>
+            )}
+          </div>
+
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
+            Game difficulty cap: <strong>{profile?.has_dementia ? (profile?.dementia_stage === 'Severe' ? 'Level 1 (Simplified)' : profile?.dementia_stage === 'Moderate' ? 'Level 2 (Comfort)' : 'Level 3 (Gentle)') : 'Level 5 (Unrestricted)'}</strong>
           </div>
         </div>
 

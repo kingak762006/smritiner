@@ -9,8 +9,8 @@ export default function ReminderModal({ reminder, onClose, onAcknowledge }) {
 
   useEffect(() => {
     if (reminder) {
-      voiceService.playGentleTone('chime');
-      const voiceText = `${reminder.title}. Scheduled for ${reminder.time_str}.`;
+      voiceService.playAudioAlert('reminder');
+      const voiceText = `Reminder alert: ${reminder.title}. Scheduled for ${reminder.time_str}.`;
       voiceService.speak(voiceText, getVoiceLocale());
     }
   }, [reminder, getVoiceLocale]);

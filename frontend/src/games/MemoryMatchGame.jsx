@@ -118,7 +118,7 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
 
       if (card1.id === card2.id) {
         // Match found!
-        voiceService.playGentleTone('success');
+        voiceService.playAudioAlert('success');
         const newMatched = [...matchedIds, card1.id];
         setMatchedIds(newMatched);
         setRevealedIndices([]);
@@ -129,7 +129,8 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
           handleGameCompletion(newMatched.length, attempts + 1);
         }
       } else {
-        // No match -> flip back after 1.1s
+        // No match -> gentle mismatch audio alert & flip back after 1.1s
+        voiceService.playAudioAlert('warning');
         setTimeout(() => {
           setRevealedIndices([]);
         }, 1100);
@@ -137,10 +138,24 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
     }
   };
 
+  const handleVoiceInput = (text) => {
+    if (!text || isCompleted) return;
+    const lower = text.toLowerCase();
+    // Reveal first card that matches user's spoken name
+    const unrevealedIdx = cards.findIndex((c, idx) => 
+      !matchedIds.includes(c.id) && 
+      !revealedIndices.includes(idx) &&
+      (lower.includes(c.id.toLowerCase()) || lower.includes(c.label_en.toLowerCase()) || lower.includes(c.label_hi.toLowerCase()))
+    );
+    if (unrevealedIdx !== -1) {
+      handleCardClick(unrevealedIdx);
+    }
+  };
+
   const handleGameCompletion = async (pairsMatched, finalAttempts) => {
     setIsCompleted(true);
     confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
-    voiceService.playGentleTone('success');
+    voiceService.playAudioAlert('victory');
 
     const durationSeconds = Math.max(5, Math.round((Date.now() - startTime) / 1000));
     const expectedAttempts = pairsMatched;
@@ -242,7 +257,7 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
       </div>
 
       {/* Voice Prompt & Instructions */}
-      <VoicePrompt text={t('games.memory_matching.prompt')} />
+      <VoicePrompt text={t('games.memory_matching.prompt')} onVoiceInput={handleVoiceInput} />
 
       {/* Action Controls & Hint */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>

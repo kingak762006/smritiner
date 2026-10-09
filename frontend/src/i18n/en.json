@@ -59,6 +59,12 @@
       "subtitle": "Healthy Habits & Schedule",
       "desc": "Strengthen chronological planning and executive function by ordering healthy daily living habits.",
       "prompt": "Arrange the daily activities in chronological sequence from morning to evening."
+    },
+    "math_runtime": {
+      "title": "7+5 Math Runtime Activity",
+      "subtitle": "Mental Arithmetic & Speed",
+      "desc": "Enhance numerical processing, mental agility, and quick decision-making with runtime arithmetic challenges.",
+      "prompt": "Solve the arithmetic equation and select or speak the correct answer before the timer runs out."
     }
   }
 }

@@ -129,8 +129,8 @@ export default function SequenceRecallGame({ onBack, userId = 'NER-PAT-4821', cu
     setUserSequence(newUserSeq);
 
     if (instrument.id !== targetItem.id) {
-      // Mistake made: gentle feedback and allow retry
-      voiceService.playGentleTone('chime');
+      // Mistake made: gentle warning audio alert and allow retry
+      voiceService.playAudioAlert('warning');
       setTimeout(() => {
         setUserSequence([]);
         playSequenceToUser(sequence, difficulty);
@@ -139,9 +139,25 @@ export default function SequenceRecallGame({ onBack, userId = 'NER-PAT-4821', cu
     }
 
     // Correct step
+    voiceService.playAudioAlert('chime');
     if (newUserSeq.length === sequence.length) {
       // Sequence completed successfully!
+      voiceService.playAudioAlert('victory');
       handleGameCompletion(true);
+    }
+  };
+
+  const handleVoiceInput = (text) => {
+    if (!text || isPlayingSeq || isCompleted) return;
+    const lower = text.toLowerCase();
+    const matched = INSTRUMENTS.find(inst => 
+      lower.includes(inst.id.toLowerCase()) || 
+      lower.includes(inst.label_en.toLowerCase()) ||
+      lower.includes(inst.label_hi.toLowerCase()) ||
+      lower.includes(inst.label_as.toLowerCase())
+    );
+    if (matched) {
+      handleInstrumentClick(matched);
     }
   };
 
@@ -233,6 +249,7 @@ export default function SequenceRecallGame({ onBack, userId = 'NER-PAT-4821', cu
             ? "Watch closely as the festive musical instruments play in sequence."
             : t('games.sequence_recall.prompt')
         }
+        onVoiceInput={handleVoiceInput}
       />
 
       {/* Progress & Guidance Banner */}

@@ -60,6 +60,13 @@ export default function ElderlyHome({ onSelectGame, userId = 'NER-PAT-4821' }) {
       title: t('games.daily_routine.title'),
       subtitle: t('games.daily_routine.subtitle'),
       desc: t('games.daily_routine.desc')
+    },
+    {
+      id: 'math_runtime',
+      icon: '🧮',
+      title: t('games.math_runtime.title'),
+      subtitle: t('games.math_runtime.subtitle'),
+      desc: t('games.math_runtime.desc')
     }
   ];
 

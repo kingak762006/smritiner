@@ -56,7 +56,9 @@ def submit_game_result(data: GameResultInput, db: Session = Depends(get_db)):
         completed=data.completed,
         hints_used=data.hints_used,
         session_duration_s=data.session_duration_s,
-        history_scores=history_scores
+        history_scores=history_scores,
+        has_dementia=bool(user.has_dementia) if hasattr(user, 'has_dementia') else False,
+        dementia_stage=getattr(user, 'dementia_stage', 'None') or 'None'
     )
 
     # If user is in Fixed Difficulty experimental control group, override next difficulty to 2

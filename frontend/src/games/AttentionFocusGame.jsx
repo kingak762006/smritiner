@@ -112,7 +112,7 @@ export default function AttentionFocusGame({ onBack, userId = 'NER-PAT-4821', cu
       const rt = Date.now() - targetSpawnTime;
       setReactionTimes((prev) => [...prev, rt]);
       setHits((prev) => prev + 1);
-      voiceService.playGentleTone('success');
+      voiceService.playAudioAlert('success');
 
       if (timerRef.current) clearTimeout(timerRef.current);
       setActiveSlot(null);
@@ -122,8 +122,18 @@ export default function AttentionFocusGame({ onBack, userId = 'NER-PAT-4821', cu
       scheduleNextSpawn(difficulty);
     } else {
       // Distractor tapped (false alarm)
-      voiceService.playGentleTone('hint');
+      voiceService.playAudioAlert('warning');
       setMisses((prev) => prev + 1);
+    }
+  };
+
+  const handleVoiceInput = (text) => {
+    if (!text || isCompleted) return;
+    const lower = text.toLowerCase();
+    if (lower.includes('leaf') || lower.includes('tea') || lower.includes('pat') || lower.includes('hit') || lower.includes('tap') || lower.includes('spot')) {
+      if (activeSlot !== null) {
+        handleSlotClick(activeSlot);
+      }
     }
   };
 
@@ -133,7 +143,7 @@ export default function AttentionFocusGame({ onBack, userId = 'NER-PAT-4821', cu
 
     setIsCompleted(true);
     confetti({ particleCount: 50, spread: 60 });
-    voiceService.playGentleTone('success');
+    voiceService.playAudioAlert('victory');
 
     const totalTargets = hits + misses;
     const accuracy = totalTargets > 0 ? hits / totalTargets : 0.8;
@@ -215,7 +225,7 @@ export default function AttentionFocusGame({ onBack, userId = 'NER-PAT-4821', cu
         </button>
       </div>
 
-      <VoicePrompt text={t('games.attention_concentration.prompt')} />
+      <VoicePrompt text={t('games.attention_concentration.prompt')} onVoiceInput={handleVoiceInput} />
 
       {/* Target indicator */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0', flexWrap: 'wrap', gap: '1rem' }}>

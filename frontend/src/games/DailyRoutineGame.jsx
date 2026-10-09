@@ -70,12 +70,22 @@ export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', curr
     const targetIndex = index + direction;
     if (targetIndex < 0 || targetIndex >= items.length) return;
 
-    voiceService.playGentleTone('chime');
+    voiceService.playAudioAlert('chime');
     const newItems = [...items];
     const temp = newItems[index];
     newItems[index] = newItems[targetIndex];
     newItems[targetIndex] = temp;
     setItems(newItems);
+  };
+
+  const handleVoiceInput = (text) => {
+    if (!text || isCompleted) return;
+    const lower = text.toLowerCase();
+    if (lower.includes('check') || lower.includes('done') || lower.includes('submit')) {
+      handleCheckOrder();
+    } else if (lower.includes('hint') || lower.includes('help')) {
+      handleHint();
+    }
   };
 
   const handleCheckOrder = async () => {
@@ -88,7 +98,7 @@ export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', curr
     if (isAllCorrect) {
       setIsCompleted(true);
       confetti({ particleCount: 50, spread: 60 });
-      voiceService.playGentleTone('success');
+      voiceService.playAudioAlert('victory');
 
       const duration = Math.max(5, Math.round((Date.now() - startTime) / 1000));
       const accuracy = attempts === 0 ? 1.0 : Math.max(0.6, 1.0 - (attempts * 0.15));
@@ -111,8 +121,8 @@ export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', curr
         console.warn('API error:', e);
       }
     } else {
-      voiceService.playGentleTone('hint');
-      alert("A few steps are not in chronological order yet. Check morning vs evening and try moving them!");
+      voiceService.playAudioAlert('warning');
+      voiceService.speak("A few steps are not in order yet. Check morning versus evening and try again.");
     }
   };
 
@@ -189,7 +199,7 @@ export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', curr
         </button>
       </div>
 
-      <VoicePrompt text={t('games.daily_routine.prompt')} />
+      <VoicePrompt text={t('games.daily_routine.prompt')} onVoiceInput={handleVoiceInput} />
 
       {/* Action Controls & Hint */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
