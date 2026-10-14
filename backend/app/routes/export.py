@@ -89,10 +89,10 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
         # Fallback profile if user not in DB
         user = User(
             id=user_id,
-            name_alias="Aita Hemaprabha (আইতা হেমপ্ৰভা)",
+            name_alias="Aaji Shantabai Deshmukh (आजी शांताबाई देशमुख)",
             age_band="70-79",
-            preferred_language="as",
-            caregiver_contact="Mridul B. (Son) / ASHA Worker Runjun (Morigaon PHC)",
+            preferred_language="mr",
+            caregiver_contact="Suresh Deshmukh (Son) / ASHA Sevikai Tai (Pune PHC)",
             cohort="adaptive",
             has_dementia=True,
             dementia_stage="Mild"
@@ -111,38 +111,36 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
     recommended_games = []
     if stage == "Severe" or (is_very_senior and stage == "Moderate"):
         recommended_games = [
-            {"game": "Family Reminiscence & Voice Memories", "level": 1, "reason": "Familiar grandson voices and ancestral memories comfort disorientation."},
-            {"game": "Memory Matching (Cultural Symbols)", "level": 1, "reason": "Only 2 pairs, zero distractors, high visual contrast for gentle recognition."},
-            {"game": "Daily Routine Recall (Morning Anchors)", "level": 1, "reason": "3 fundamental morning steps to support temporal grounding."}
+            {"game": "Family Reminiscence & Voice Memories (Maharashtra Stories)", "level": 1, "reason": "Familiar grandson voices and ancestral memories comfort disorientation."},
+            {"game": "Memory Matching (Cultural Symbols: Pheta, Tutari)", "level": 1, "reason": "Only 2 pairs, zero distractors, high visual contrast for gentle recognition."},
+            {"game": "Daily Routine Recall (Morning Anchors: Water, Medicine)", "level": 1, "reason": "3 fundamental morning steps to support temporal grounding."}
         ]
     elif stage == "Moderate":
         recommended_games = [
-            {"game": "Memory Matching", "level": 2, "reason": "3 cultural pairs (Jaapi, Dhol, Rhino) to stimulate visual short-term recall."},
-            {"game": "Sequence Recall (Traditional Rhythms)", "level": 1, "reason": "2-step musical sequences to gently exercise working memory."},
-            {"game": "Pattern Recognition (Assam Handloom)", "level": 1, "reason": "Binary selection to promote visual discrimination without anxiety."},
-            {"game": "Grandson & Family Voice Stories", "level": 1, "reason": "Daily grounding audio to reduce sundowning agitation."}
+            {"game": "Memory Matching (Maharashtra Cultural Symbols)", "level": 2, "reason": "3 cultural pairs (Puneri Pheta, Dhol-Tasha, Tutari) to stimulate visual short-term recall."},
+            {"game": "Sequence Recall (Dhol-Tasha Rhythms)", "level": 1, "reason": "2-step musical sequences to gently exercise working memory."},
+            {"game": "Pattern Recognition (Paithani & Warli Art)", "level": 1, "reason": "Binary selection to promote visual discrimination without anxiety."},
+            {"game": "Grandson & Family Voice Stories (Marathi/Hindi/English)", "level": 1, "reason": "Daily grounding audio to reduce sundowning agitation."}
         ]
     elif stage == "Mild":
         recommended_games = [
-            {"game": "Memory Matching", "level": 2, "reason": "3-4 pairs, maintaining hippocampal spatial memory."},
+            {"game": "Memory Matching (Maharashtra Heritage)", "level": 2, "reason": "3-4 pairs, maintaining hippocampal spatial memory."},
             {"game": "7+5 Mathematical Runtime Game", "level": 1, "reason": "Simple arithmetic equations (+, -) to exercise frontal lobe executive processing."},
-            {"game": "Attention Focus (Golden Tea Leaves)", "level": 2, "reason": "Spotting targets to enhance reaction latency and selective attention."},
-            {"game": "Daily Routine Sequence", "level": 2, "reason": "Chronological sequencing of 4 daily activities."}
+            {"game": "Attention Focus (Ratnagiri Alphonso Mango)", "level": 2, "reason": "Spotting targets to enhance reaction latency and selective attention."},
+            {"game": "Daily Routine Sequence (Daily Living & Haripath)", "level": 2, "reason": "Chronological sequencing of 4 daily activities."}
         ]
     else:
         recommended_games = [
             {"game": "7+5 Mathematical Runtime Game", "level": 3, "reason": "Rapid mental math to challenge executive cognitive speed."},
-            {"game": "Sequence Recall", "level": 3, "reason": "4-symbol sequences for working memory stamina."},
-            {"game": "Pattern Recognition", "level": 3, "reason": "Multifactorial motif discrimination."},
-            {"game": "Attention Focus", "level": 3, "reason": "High-speed selective reaction task."}
+            {"game": "Sequence Recall (Dhol, Tasha, Tutari, Lezim)", "level": 3, "reason": "4-symbol sequences for working memory stamina."},
+            {"game": "Pattern Recognition (Warli, Paithani & Fort Motifs)", "level": 3, "reason": "Multifactorial motif discrimination."},
+            {"game": "Attention Focus (Alphonso Mango Challenge)", "level": 3, "reason": "High-speed selective reaction task."}
         ]
 
-    # Reminiscence Story Script
-    reminiscence_script = (
-        f"Hey Grandpa! It's your grandson speaking. How are you doing today? "
-        f"Do you remember the tasty crunchy chips and sweet pithas you used to bring me after school from the bazaar? "
-        f"Everyone at home loves you so much. Take your warm water, and rest peacefully today!"
-    )
+    # Reminiscence Story Scripts in all 3 languages (Marathi, Hindi, English)
+    reminiscence_script_mr = "नमस्कार आजोबा, नमस्कार आजी! मी तुमचा नातू बोलतोय. कसे आहात तुम्ही? आठवतंय का, लहानपणी संध्याकाळी तुम्ही मंडईतून माझ्यासाठी गरमागरम बटाटेवडे आणि चिवडा आणायचात? घरातले सगळेजण तुमची खूप आठवण काढतात आणि तुमच्यावर मनापासून प्रेम करतात. वेळेवर कोमट पाणी आणि औषध घ्या, आणि शांत विश्रांती घ्या!"
+    reminiscence_script_hi = "नमस्ते दादाजी, नमस्ते दादीजी! मैं आपका पोता बोल रहा हूँ। आप कैसे हैं? क्या आपको याद है बचपन में आप शाम को बाज़ार से मेरे लिए गरमागरम बटाटा वड़ा और कुरकुरे चिप्स लाते थे? घर में सब लोग आपको बहुत याद करते हैं। समय पर गुनगुना पानी और दवाइयां लीजिए, और आराम कीजिए!"
+    reminiscence_script_en = "Hey Grandpa, Hey Grandma! It's your grandson speaking. How are you doing today? Do you remember the tasty batata vadas and crunchy chips you used to bring me after school from the bazaar? Everyone at home misses you and loves you so much. Take your warm water, and rest peacefully today!"
 
     if format == "json":
         import json
@@ -168,7 +166,11 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
             "age_and_stage_recommendations": {
                 "recommended_games": recommended_games,
                 "voice_reminiscence_recommended": is_very_senior or user.has_dementia,
-                "family_audio_note_script": reminiscence_script
+                "family_audio_note_scripts": {
+                    "mr": reminiscence_script_mr,
+                    "hi": reminiscence_script_hi,
+                    "en": reminiscence_script_en
+                }
             }
         }
         return Response(content=json.dumps(report_data, indent=2), media_type="application/json")
@@ -176,8 +178,8 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
     # Generate printable plain-text medical research summary
     txt_lines = [
         "=" * 72,
-        "   SMRITINER - AI STATEWIDE COGNITIVE & DEMENTIA EVALUATION REPORT",
-        "   Ministry of Development of North Eastern Region (MDoNER)",
+        "   SMRITI - STATEWIDE COGNITIVE & DEMENTIA EVALUATION REPORT",
+        "   Maharashtra Public Health & Cognitive Research Initiative",
         "=" * 72,
         "",
         "RESEARCH & CLINICAL DISCLAIMER:",
@@ -190,7 +192,7 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
         f"Patient ID             : {user.id}",
         f"Name / Alias           : {user.name_alias}",
         f"Age Bracket            : {user.age_band} years",
-        f"Language Preference    : {user.preferred_language.upper()} (Assamese / Hindi / English / Marathi)",
+        f"Language Preference    : {user.preferred_language.upper()} (Marathi / Hindi / English)",
         f"Caregiver Contact      : {user.caregiver_contact}",
         f"Dementia Diagnosed     : {'YES (Documented in Caregiver Record)' if user.has_dementia else 'NO / NONE RECORDED'}",
         f"Clinical Stage Rating  : {user.dementia_stage.upper()} STAGE",
@@ -222,11 +224,19 @@ def export_dementia_clinical_report(user_id: str, format: str = "txt", db: Sessi
         "For elderly patients with severe/moderate dementia or advanced age,",
         "complex digital games are supplanted by soothing family voice memories.",
         "",
-        "ACTIVE VOICE MEMORY SCRIPT (Grandson Voice Note):",
-        f'"{reminiscence_script}"',
+        "ACTIVE VOICE MEMORY SCRIPTS (All 3 Languages):",
+        "",
+        "[A] MARATHI (मराठी - नातवाची प्रेमळ ऑडिओ नोट):",
+        f'"{reminiscence_script_mr}"',
+        "",
+        "[B] HINDI (हिन्दी - पोते का वॉयस संदेश):",
+        f'"{reminiscence_script_hi}"',
+        "",
+        "[C] ENGLISH (Grandson Voice Note):",
+        f'"{reminiscence_script_en}"',
         "",
         "=" * 72,
-        "END OF REPORT - Generated via SmritiNER Research Engine"
+        "END OF REPORT - Generated via Smriti Adaptive Research Engine"
     ])
 
     report_text = "\n".join(txt_lines)

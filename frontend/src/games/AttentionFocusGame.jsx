@@ -6,11 +6,17 @@ import { api } from '../services/api';
 import { voiceService } from '../services/voiceService';
 import VoicePrompt from '../components/VoicePrompt';
 
-const TARGET_ITEM = { id: 'tea_leaf', icon: '🍃', label_en: 'Golden Tea Leaves', label_as: 'সোণালী চাহ পাত', label_hi: 'सोने जैसी चाय पत्ती' };
+const TARGET_ITEM = {
+  id: 'hapus_mango',
+  icon: '🥭',
+  label_en: 'Ratnagiri Alphonso Mango',
+  label_hi: 'रत्नागिरी हापुस आम',
+  label_mr: 'रत्नागिरी हापूस आंबा'
+};
 const DISTRACTORS = [
   { id: 'dry_leaf', icon: '🍂', label: 'Dry Leaf' },
   { id: 'stone', icon: '🪨', label: 'Pebble' },
-  { id: 'water', icon: '💧', label: 'Dew Drop' },
+  { id: 'water', icon: '💧', label: 'Water Drop' },
   { id: 'twig', icon: '🪵', label: 'Twig' }
 ];
 
@@ -231,7 +237,10 @@ export default function AttentionFocusGame({ onBack, userId = 'NER-PAT-4821', cu
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0', flexWrap: 'wrap', gap: '1rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.25rem', fontWeight: 700, color: 'var(--primary)' }}>
           <Eye size={24} />
-          <span>Target: <strong>Golden Tea Leaves 🍃</strong></span>
+          <span>
+            {locale === 'mr' ? 'लक्ष्य: ' : locale === 'hi' ? 'लक्ष्य: ' : 'Target: '}
+            <strong>{locale === 'mr' ? TARGET_ITEM.label_mr : locale === 'hi' ? TARGET_ITEM.label_hi : TARGET_ITEM.label_en} {TARGET_ITEM.icon}</strong>
+          </span>
         </div>
         <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-muted)' }}>
           Hits: <strong style={{ color: 'var(--primary)' }}>{hits}</strong> | Remaining: <strong>{targetsRemaining}</strong>

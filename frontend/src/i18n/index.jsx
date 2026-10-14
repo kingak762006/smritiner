@@ -10,7 +10,7 @@ export const I18nContext = createContext();
 
 export function I18nProvider({ children }) {
   const [locale, setLocaleState] = useState(() => {
-    return localStorage.getItem('smriti_locale') || 'as'; // Default to Assamese for NER cultural focus
+    return localStorage.getItem('smriti_locale') || 'mr'; // Default to Marathi
   });
 
   const setLocale = (newLocale) => {

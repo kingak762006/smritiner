@@ -7,12 +7,12 @@ import { voiceService } from '../services/voiceService';
 import VoicePrompt from '../components/VoicePrompt';
 
 const MOTIFS = [
-  { id: 'rhino', label_en: 'Kaziranga One-Horned Rhino', label_as: 'কাজিৰঙাৰ এশিঙীয়া গঁড়', label_hi: 'काजीरंगा का एक सींग वाला गैंडा', label_mr: 'काझीरंगा एक शिंगी गेंडा', icon: '🦏', category: 'fauna' },
-  { id: 'hornbill', label_en: 'Great Indian Hornbill', label_as: 'পাহাৰৰ ধনেশ পক্ষী', label_hi: 'धनेश पक्षी', label_mr: 'धनेश पक्षी (हॉर्नबिल)', icon: '🦜', category: 'fauna' },
-  { id: 'jaapi', label_en: 'Woven Jaapi Motif', label_as: 'ফুলাম বাঁহৰ জাপী', label_hi: 'पारंपरिक जापी', label_mr: 'पारंपरिक बांबूची जापी', icon: '👒', category: 'craft' },
-  { id: 'xorai', label_en: 'Bell-Metal Xorai', label_as: 'কাঁহ-পিতলৰ শৰাই', label_hi: 'पारंपरिक शराई', label_mr: 'पितळी शराई तबक', icon: '🏆', category: 'craft' },
-  { id: 'tea_leaf', label_en: 'Golden Tea Bud', label_as: 'সোণালী চাহৰ দুটি পাত', label_hi: 'चाय की कोमल पत्ती', label_mr: 'सोनेरी चहाचे कोवळे पान', icon: '🍃', category: 'flora' },
-  { id: 'muga_loom', label_en: 'Muga Silk Loom Lozenge', label_as: 'মুগা ৰেচমৰ তাঁতৰ ফুল', label_hi: 'मूगा सिल्क का नमूना', label_mr: 'मूगा सिल्क हातमाग नमुना', icon: '🧵', category: 'handloom' }
+  { id: 'paithani_peacock', label_en: 'Paithani Mor (Peacock)', label_hi: 'पैठणी मोर बॉर्डर', label_mr: 'पैठणी पदरावरील मोर नक्षी', icon: '🦚', category: 'handloom' },
+  { id: 'warli_art', label_en: 'Warli Tarpa Art', label_hi: 'वारली आदिवासी कला', label_mr: 'पारंपरिक वारली चित्रकला', icon: '🎨', category: 'art' },
+  { id: 'raigad_fort', label_en: 'Raigad Fort Bastion', label_hi: 'रायगड दुर्ग बुरुज', label_mr: 'रायगड किल्ल्याचा बुरुज', icon: '🏰', category: 'heritage' },
+  { id: 'kolhapuri_saaj', label_en: 'Kolhapuri Saaj', label_hi: 'कोल्हापुरी साज', label_mr: 'कोल्हापुरी साज दागिना', icon: '📿', category: 'craft' },
+  { id: 'hapus_bloom', label_en: 'Ratnagiri Alphonso Mango', label_hi: 'हापुस आम', label_mr: 'कोकणी हापूस आंबा', icon: '🥭', category: 'flora' },
+  { id: 'shivaji_mudra', label_en: 'Rajmudra Symbol', label_hi: 'शिवकालीन राजमुद्रा', label_mr: 'छत्रपती शिवराय राजमुद्रा', icon: '🪙', category: 'heritage' }
 ];
 
 export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', currentDifficulty = 2 }) {
@@ -161,9 +161,8 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
 
   const getLabel = (item) => {
     if (!item) return '';
-    if (locale === 'as') return item.label_as;
-    if (locale === 'hi') return item.label_hi;
-    if (locale === 'mr') return item.label_mr || item.label_hi;
+    if (locale === 'mr') return item.label_mr || item.label_en;
+    if (locale === 'hi') return item.label_hi || item.label_en;
     return item.label_en;
   };
 

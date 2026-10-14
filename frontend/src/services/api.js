@@ -12,10 +12,10 @@ export const api = {
       // Local fallback for offline mode
       return {
         id: userId,
-        name_alias: 'Aita Hemaprabha (আইতা হেমপ্ৰভা)',
+        name_alias: 'Aaji Shantabai Deshmukh (आजी शांताबाई देशमुख)',
         age_band: '70-79',
-        preferred_language: 'as',
-        caregiver_contact: 'Mridul B. (Son) / ASHA Worker Runjun (Morigaon PHC)',
+        preferred_language: 'mr',
+        caregiver_contact: 'Suresh Deshmukh (Son) / ASHA Sevikai Tai (Pune PHC)',
         cohort: 'adaptive',
         has_dementia: true,
         dementia_stage: 'Mild'
@@ -156,18 +156,18 @@ export const api = {
       return {
         patient_profile: {
           user_id: userId,
-          name_alias: 'Aita Hemaprabha (আইতা হেমপ্ৰভা)',
+          name_alias: 'Aaji Shantabai Deshmukh (आजी शांताबाई देशमुख)',
           age_band: '70-79',
           has_dementia: true,
           dementia_stage: 'Mild'
         },
         age_and_stage_recommendations: {
           recommended_games: [
-            { game: 'Memory Matching', level: 2, reason: 'Hippocampal spatial memory maintenance.' },
+            { game: 'Memory Matching (Maharashtra Cultural Symbols)', level: 2, reason: 'Hippocampal spatial memory maintenance.' },
             { game: '7+5 Mathematical Runtime Game', level: 1, reason: 'Frontal lobe executive processing.' },
-            { game: 'Daily Routine Sequence', level: 2, reason: 'Chronological grounding.' }
+            { game: 'Daily Routine Sequence (Maharashtra Lifestyle)', level: 2, reason: 'Chronological grounding.' }
           ],
-          family_audio_note_script: "Hey Grandpa/Grandma! It's your grandson speaking. Remember the crunchy chips and sweets you used to bring me after school? Everyone loves you so much!"
+          family_audio_note_script: "नमस्कार आजोबा, नमस्कार आजी! मी तुमचा नातू बोलतोय. लहानपणी तुम्ही मंडईतून आणलेले बटाटेवडे आणि चिप्स आठवतात का? घरातले सर्वजण तुमची खूप आठवण काढतात!"
         }
       };
     }

@@ -7,14 +7,14 @@ import { voiceService } from '../services/voiceService';
 import VoicePrompt from '../components/VoicePrompt';
 
 const CULTURAL_ITEMS = [
-  { id: 'jaapi', label_en: 'Jaapi', label_as: 'জাপী', label_hi: 'जापी', label_mr: 'जापी (बांबूची टोपी)', icon: '👒' },
-  { id: 'gamosa', label_en: 'Gamosa', label_as: 'গামোচা', label_hi: 'गमोसा', label_mr: 'गमोसा (पारंपरिक शेला)', icon: '🧣' },
-  { id: 'dhol', label_en: 'Bihu Dhol', label_as: 'ঢোল', label_hi: 'ढोल', label_mr: 'बिहू ढोल', icon: '🥁' },
-  { id: 'pepa', label_en: 'Pepa Horn', label_as: 'পেঁপা', label_hi: 'पेपा', label_mr: 'पेपा (शिंगाचे वाद्य)', icon: '🎺' },
-  { id: 'kaji_nemu', label_en: 'Kaji Nemu', label_as: 'কাজী নেমু', label_hi: 'काजी नेमु', label_mr: 'काजी नेमु (सुगंधी लिंबू)', icon: '🍋' },
-  { id: 'tea_leaves', label_en: 'Tea Leaves', label_as: 'সোণালী চাহ', label_hi: 'चाय पत्ती', label_mr: 'सोनेरी चहाची पाने', icon: '🍃' },
-  { id: 'xorai', label_en: 'Xorai Tray', label_as: 'শৰাই', label_hi: 'शराई', label_mr: 'शराई (पितळी तबक)', icon: '🏆' },
-  { id: 'rhino', label_en: 'Kaziranga Rhino', label_as: 'এশিঙীয়া গঁড়', label_hi: 'गेंडा', label_mr: 'काझीरंगा एक शिंगी गेंडा', icon: '🦏' }
+  { id: 'pheta', label_en: 'Puneri Pheta', label_hi: 'पुनेरी फेटा (पगड़ी)', label_mr: 'पुणेरी फेटा', icon: '👑' },
+  { id: 'dhol_tasha', label_en: 'Dhol Tasha', label_hi: 'ढोल ताशा', label_mr: 'ढोल ताशा', icon: '🥁' },
+  { id: 'tutari', label_en: 'Tutari Horn', label_hi: 'शिवकालीन तुतारी', label_mr: 'मानाची तुतारी', icon: '🎺' },
+  { id: 'paithani', label_en: 'Paithani Saree', label_hi: 'पैठणी साड़ी', label_mr: 'येवला पैठणी', icon: '🥻' },
+  { id: 'hapus', label_en: 'Alphonso Mango', label_hi: 'हापुस आम', label_mr: 'रत्नागिरी हापूस आंबा', icon: '🥭' },
+  { id: 'modak', label_en: 'Ukdiche Modak', label_hi: 'उकडीचे मोदक', label_mr: 'उकडीचे मोदक', icon: '🥟' },
+  { id: 'samai', label_en: 'Brass Samai Lamp', label_hi: 'पारंपरिक समई', label_mr: 'पितळी समई', icon: '🪔' },
+  { id: 'shekru', label_en: 'Shekru Giant Squirrel', label_hi: 'शेकरू (विशाल गिलहरी)', label_mr: 'शेकरू (राज्य प्राणी)', icon: '🐿️' }
 ];
 
 export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', currentDifficulty = 2 }) {
@@ -235,9 +235,8 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
   };
 
   const getItemLabel = (item) => {
-    if (locale === 'as') return item.label_as;
-    if (locale === 'hi') return item.label_hi;
-    if (locale === 'mr') return item.label_mr || item.label_hi;
+    if (locale === 'mr') return item.label_mr || item.label_en;
+    if (locale === 'hi') return item.label_hi || item.label_en;
     return item.label_en;
   };
 

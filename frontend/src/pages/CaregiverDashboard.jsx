@@ -16,10 +16,9 @@ export default function CaregiverDashboard({ userId = 'NER-PAT-4821' }) {
   const [loading, setLoading] = useState(true);
 
   const getElderTitle = () => {
-    if (locale === 'as') return 'হেমপ্ৰভা (নাগৰিক / অংশগ্ৰহণকাৰী)';
-    if (locale === 'hi') return 'हेमप्रभा (नागरिक व प्रतिभागी)';
-    if (locale === 'mr') return 'हेमप्रभा (नागरिक व खेळाडू)';
-    return 'Hemaprabha (Participant / Citizen)';
+    if (locale === 'mr') return 'आजी शांताबाई देशमुख (ज्येष्ठ नागरिक व खेळाडू)';
+    if (locale === 'hi') return 'दादी शांताबाई देशमुख (वरिष्ठ नागरिक व प्रतिभागी)';
+    return 'Aaji Shantabai Deshmukh (Elder Participant / Citizen)';
   };
 
   // New reminder form state

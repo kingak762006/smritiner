@@ -138,7 +138,7 @@ class VoiceService {
   /**
    * Text-To-Speech (TTS)
    */
-  speak(text, locale = 'as-IN', onEndCallback = null) {
+  speak(text, locale = 'mr-IN', onEndCallback = null) {
     if (!this.enabled || !text) return;
     this.playAudioAlert('chime');
 

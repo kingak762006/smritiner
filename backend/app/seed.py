@@ -26,10 +26,10 @@ def seed_demonstration_database():
         # 1. Primary Patient Profile (Adaptive Cohort)
         patient_adaptive = User(
             id="NER-PAT-4821",
-            name_alias="Aita Hemaprabha (আইতা হেমপ্ৰভা)",
+            name_alias="Aaji Shantabai Deshmukh (आजी शांताबाई देशमुख)",
             age_band="70-79",
-            preferred_language="as",
-            caregiver_contact="Mridul B. (Son) / ASHA Worker Runjun (Morigaon PHC)",
+            preferred_language="mr",
+            caregiver_contact="Suresh Deshmukh (Son) / ASHA Sevikai Tai (Pune PHC)",
             cohort="adaptive",
             has_dementia=True,
             dementia_stage="Mild"
@@ -39,10 +39,10 @@ def seed_demonstration_database():
         # 2. Control Patient Profile (Fixed Difficulty Cohort)
         patient_fixed = User(
             id="NER-PAT-3910",
-            name_alias="Koka Birendra (ককা বীৰেন্দ্ৰ)",
+            name_alias="Ajoba Dattatraya Joshi (आजोबा दत्तात्रय जोशी)",
             age_band="75-84",
-            preferred_language="as",
-            caregiver_contact="Geeta B. (Daughter) / Nagaon District Hospital",
+            preferred_language="mr",
+            caregiver_contact="Sunita Joshi (Daughter) / Satara District Hospital",
             cohort="fixed",
             has_dementia=True,
             dementia_stage="Moderate"
@@ -53,10 +53,10 @@ def seed_demonstration_database():
         # 3. Seed Standard Reminders for Patient 4821
         reminders_data = [
             ("Morning BP Medicine (Amlodipine 5mg)", "medication", "07:30 AM", "Daily"),
-            ("Drink a glass of warm water with Kaji Nemu", "hydration", "08:15 AM", "Daily"),
-            ("Morning courtyard walk in gentle sunshine", "activity", "09:00 AM", "Daily"),
-            ("Wholesome lunch with steamed rice & leafy greens", "meal", "01:00 PM", "Daily"),
-            ("Weekly Primary Health Centre (PHC) Checkup", "appointment", "04:30 PM", "Weekly"),
+            ("Drink a glass of warm water with lemon & honey", "hydration", "08:15 AM", "Daily"),
+            ("Morning courtyard & garden walk in gentle sunshine", "activity", "09:00 AM", "Daily"),
+            ("Wholesome lunch with Varan-Bhaat, Bhakri & green vegetables", "meal", "01:00 PM", "Daily"),
+            ("Weekly Primary Health Centre (Pune PHC) Checkup", "appointment", "04:30 PM", "Weekly"),
             ("Night Heart Medicine (Atorvastatin 10mg)", "medication", "09:00 PM", "Daily")
         ]
         for title, cat, time_s, freq in reminders_data:

@@ -7,12 +7,12 @@ import { voiceService } from '../services/voiceService';
 import VoicePrompt from '../components/VoicePrompt';
 
 const INSTRUMENTS = [
-  { id: 'dhol', label_en: 'Bihu Dhol', label_as: 'ঢোল', label_hi: 'ढोल', label_mr: 'बिहू ढोल', icon: '🥁', color: '#D97706' },
-  { id: 'pepa', label_en: 'Pepa Horn', label_as: 'পেঁপা', label_hi: 'पेपा', label_mr: 'पेपा (शिंगाचे वाद्य)', icon: '🎺', color: '#059669' },
-  { id: 'gogona', label_en: 'Gogona', label_as: 'গগনা', label_hi: 'गगना', label_mr: 'गगना वाद्य', icon: '🎵', color: '#2563EB' },
-  { id: 'bhortaal', label_en: 'Bhortaal', label_as: 'ভৰতাল', label_hi: 'ताल', label_mr: 'झांज / ताल', icon: '🔔', color: '#7C3AED' },
-  { id: 'flute', label_en: 'Bamboo Flute', label_as: 'বাঁহী', label_hi: 'बांसुरी', label_mr: 'बांबूची बासरी', icon: '🪈', color: '#DB2777' },
-  { id: 'xorai', label_en: 'Xorai Bell', label_as: 'শৰাই', label_hi: 'शराई', label_mr: 'शराई (तबक)', icon: '🏆', color: '#DC2626' }
+  { id: 'dhol', label_en: 'Nashik Dhol', label_hi: 'नासिक ढोल', label_mr: 'नाशिक ढोल', icon: '🥁', color: '#D97706' },
+  { id: 'tasha', label_en: 'Puneri Tasha', label_hi: 'पुनेरी ताशा', label_mr: 'पुणेरी ताशा', icon: '🪘', color: '#DC2626' },
+  { id: 'tutari', label_en: 'Tutari Horn', label_hi: 'शिवकालीन तुतारी', label_mr: 'मानाची तुतारी', icon: '🎺', color: '#059669' },
+  { id: 'lezim', label_en: 'Lezim', label_hi: 'पारंपरिक लेजिम', label_mr: 'पारंपरिक लेझीम', icon: '🪇', color: '#2563EB' },
+  { id: 'taal', label_en: 'Warkari Taal', label_hi: 'वारकरी ताल (झांझ)', label_mr: 'वारकरी टाळ', icon: '🔔', color: '#7C3AED' },
+  { id: 'veena', label_en: 'Tambura / Veena', label_hi: 'एकतारी वीणा', label_mr: 'एकतारी वीणा', icon: '🪕', color: '#DB2777' }
 ];
 
 export default function SequenceRecallGame({ onBack, userId = 'NER-PAT-4821', currentDifficulty = 2 }) {
@@ -195,9 +195,8 @@ export default function SequenceRecallGame({ onBack, userId = 'NER-PAT-4821', cu
   };
 
   const getItemLabel = (item) => {
-    if (locale === 'as') return item.label_as;
-    if (locale === 'hi') return item.label_hi;
-    if (locale === 'mr') return item.label_mr || item.label_hi;
+    if (locale === 'mr') return item.label_mr || item.label_en;
+    if (locale === 'hi') return item.label_hi || item.label_en;
     return item.label_en;
   };
 

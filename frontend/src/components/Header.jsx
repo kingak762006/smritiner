@@ -89,16 +89,15 @@ export default function Header({ currentRole, setCurrentRole, onHomeClick }) {
           <span>{t('role_research')}</span>
         </button>
 
-        {/* Language Selector */}
+        {/* Language Selector (3 Languages: Marathi, Hindi, English) */}
         <select
           className="lang-select"
           value={locale}
           onChange={(e) => setLocale(e.target.value)}
           aria-label="Select Language"
         >
-          <option value="as">অসমীয়া (Assamese)</option>
-          <option value="hi">हिन्दी (Hindi)</option>
           <option value="mr">मराठी (Marathi)</option>
+          <option value="hi">हिन्दी (Hindi)</option>
           <option value="en">English</option>
         </select>
 

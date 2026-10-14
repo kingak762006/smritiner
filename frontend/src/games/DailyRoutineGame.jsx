@@ -7,13 +7,13 @@ import { voiceService } from '../services/voiceService';
 import VoicePrompt from '../components/VoicePrompt';
 
 const ALL_ROUTINE_STEPS = [
-  { id: 'step_water', order: 1, label_en: '1. Morning Warm Water', label_as: '১. ৰাতিপুৱাৰ কুহুমীয়া পানী', label_hi: '1. सुबह का गुनगुना पानी', label_mr: '१. सकाळी कोमट पाणी', icon: '🥛', time: '06:30 AM' },
-  { id: 'step_med', order: 2, label_en: '2. Morning Blood Pressure Medicine', label_as: '২. ৰাতিপুৱাৰ ঔষধ সেৱন', label_hi: '2. सुबह की दवा', label_mr: '२. सकाळची रक्तदाबाची औषधे', icon: '💊', time: '07:15 AM' },
-  { id: 'step_tea', order: 3, label_en: '3. Assam Tea & Warm Pitha', label_as: '৩. ৰঙা চাহ আৰু পিঠা', label_hi: '3. असम की चाय और नाश्ता', label_mr: '३. चहा आणि नाश्ता', icon: '🍵', time: '08:00 AM' },
-  { id: 'step_walk', order: 4, label_en: '4. Courtyard / Garden Walk', label_as: '৪. বাৰীত মুকলি খোজ কঢ়া', label_hi: '4. आंगन में टहलना', label_mr: '४. अंगणात किंवा बागेत फेरफटका', icon: '🚶', time: '09:00 AM' },
-  { id: 'step_lunch', order: 5, label_en: '5. Wholesome Lunch & Water', label_as: '৫. দুপৰীয়াৰ পুষ্টিকৰ ভাত', label_hi: '5. दोपहर का भोजन', label_mr: '५. दुपारचे पौष्टिक जेवण', icon: '🍲', time: '01:00 PM' },
-  { id: 'step_evening', order: 6, label_en: '6. Evening Lamp & Family Chat', label_as: '৬. সন্ধিয়াৰ বন্তি আৰু কথা-বতৰা', label_hi: '6. शाम का दीया और परिवार', label_mr: '६. संध्याकाळी दिवाबत्ती आणि गप्पा', icon: '🪔', time: '06:30 PM' },
-  { id: 'step_rest', order: 7, label_en: '7. Night Medicine & Rest', label_as: '৭. নিশাৰ ঔষধ আৰু শোৱা', label_hi: '7. रात की दवा और आराम', label_mr: '७. रात्रीची औषधे आणि शांत विश्रांती', icon: '🛏️', time: '09:30 PM' }
+  { id: 'step_water', order: 1, label_en: '1. Morning Warm Water', label_hi: '1. सुबह का गुनगुना पानी', label_mr: '१. सकाळी कोमट पाणी', icon: '🥛', time: '06:30 AM' },
+  { id: 'step_med', order: 2, label_en: '2. Morning BP Medicine', label_hi: '2. सुबह की बीपी की दवा', label_mr: '२. सकाळची बीपीची औषधे', icon: '💊', time: '07:15 AM' },
+  { id: 'step_breakfast', order: 3, label_en: '3. Warm Kande Pohe & Special Chai', label_hi: '3. गरमागरम पोहा/उपमा और स्पेशल चाय', label_mr: '३. गरमागरम कांदेपोहे आणि वाफाळलेला चहा', icon: '🍵', time: '08:00 AM' },
+  { id: 'step_tulsi_walk', order: 4, label_en: '4. Tulsi Vrindavan Puja & Garden Walk', label_hi: '4. तुलसी वृंदावन पूजा और टहलना', label_mr: '४. तुळशी वृंदावन पूजा आणि बागेत फेरफटका', icon: '🪴', time: '09:00 AM' },
+  { id: 'step_lunch', order: 5, label_en: '5. Varan Bhaat & Bhakri Lunch', label_hi: '5. वरण-भात / भाकरी दोपहर का भोजन', label_mr: '५. दुपारचे गरमागरम वरण-भात आणि भाकरी जेवण', icon: '🍲', time: '01:00 PM' },
+  { id: 'step_evening', order: 6, label_en: '6. Evening Samai Lamp & Haripath', label_hi: '6. शाम का दीया और हरिपाठ', label_mr: '६. संध्याकाळी समई प्रज्वलन आणि हरिपाठ', icon: '🪔', time: '06:30 PM' },
+  { id: 'step_rest', order: 7, label_en: '7. Night Medicine & Restful Sleep', label_hi: '7. रात की दवा और शांत नींद', label_mr: '७. रात्रीची औषधे आणि शांत विश्रांती', icon: '🛏️', time: '09:30 PM' }
 ];
 
 export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', currentDifficulty = 2 }) {
@@ -151,9 +151,8 @@ export default function DailyRoutineGame({ onBack, userId = 'NER-PAT-4821', curr
 
   const getLabel = (item) => {
     if (!item) return '';
-    if (locale === 'as') return item.label_as;
-    if (locale === 'hi') return item.label_hi;
-    if (locale === 'mr') return item.label_mr || item.label_hi;
+    if (locale === 'mr') return item.label_mr || item.label_en;
+    if (locale === 'hi') return item.label_hi || item.label_en;
     return item.label_en;
   };
 
