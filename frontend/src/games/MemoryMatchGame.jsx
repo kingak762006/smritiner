@@ -140,8 +140,36 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
 
   const handleVoiceInput = (text) => {
     if (!text || isCompleted) return;
-    const lower = text.toLowerCase();
-    // Reveal first card that matches user's spoken name
+    const lower = text.toLowerCase().trim();
+
+    // 1. Check for card/box index commands: "select card 3", "card 1", "box 2", "third box", etc.
+    const numMatch = lower.match(/(?:card|box|number|no\.?)\s*(\d+)/i) || lower.match(/\b(\d+)\b/);
+    if (numMatch) {
+      const idx = parseInt(numMatch[1], 10) - 1; // 1-indexed to 0-indexed
+      if (idx >= 0 && idx < cards.length && !matchedIds.includes(cards[idx].id) && !revealedIndices.includes(idx)) {
+        handleCardClick(idx);
+        return;
+      }
+    }
+
+    const ordinalMap = {
+      'first': 0, '1st': 0, 'pehla': 0, 'prothom': 0,
+      'second': 1, '2nd': 1, 'dusra': 1, 'dwitiyo': 1,
+      'third': 2, '3rd': 2, 'teesra': 2, 'tritiyo': 2,
+      'fourth': 3, '4th': 3, 'chautha': 3,
+      'fifth': 4, '5th': 4,
+      'sixth': 5, '6th': 5
+    };
+    for (const [word, idx] of Object.entries(ordinalMap)) {
+      if (lower.includes(word) && idx < cards.length) {
+        if (!matchedIds.includes(cards[idx].id) && !revealedIndices.includes(idx)) {
+          handleCardClick(idx);
+          return;
+        }
+      }
+    }
+
+    // 2. Reveal first card that matches user's spoken name
     const unrevealedIdx = cards.findIndex((c, idx) => 
       !matchedIds.includes(c.id) && 
       !revealedIndices.includes(idx) &&
@@ -296,7 +324,10 @@ export default function MemoryMatchGame({ onBack, userId = 'NER-PAT-4821', curre
                   <span className="memory-card-label">{getItemLabel(card)}</span>
                 </>
               ) : (
-                <span style={{ color: 'var(--border-subtle)', fontSize: '2rem' }}>🌿</span>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem' }}>
+                  <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--accent-gold)' }}>#{index + 1}</span>
+                  <span style={{ color: 'var(--border-subtle)', fontSize: '1.8rem' }}>🌿</span>
+                </div>
               )}
             </button>
           );

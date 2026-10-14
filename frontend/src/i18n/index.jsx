@@ -9,12 +9,38 @@ const translations = { en, as, hi, mr };
 export const I18nContext = createContext();
 
 export function I18nProvider({ children }) {
-  const [locale, setLocale] = useState(() => {
+  const [locale, setLocaleState] = useState(() => {
     return localStorage.getItem('smriti_locale') || 'as'; // Default to Assamese for NER cultural focus
   });
 
+  const setLocale = (newLocale) => {
+    setLocaleState(newLocale);
+    localStorage.setItem('smriti_locale', newLocale);
+    window.dispatchEvent(new CustomEvent('smriti_locale_changed', { detail: newLocale }));
+  };
+
   useEffect(() => {
     localStorage.setItem('smriti_locale', locale);
+
+    const handleStorage = (e) => {
+      if (e.key === 'smriti_locale' && e.newValue) {
+        setLocaleState(e.newValue);
+      }
+    };
+
+    const handleCustomChange = (e) => {
+      if (e.detail && e.detail !== locale) {
+        setLocaleState(e.detail);
+      }
+    };
+
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('smriti_locale_changed', handleCustomChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('smriti_locale_changed', handleCustomChange);
+    };
   }, [locale]);
 
   const t = (key) => {

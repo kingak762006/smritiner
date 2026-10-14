@@ -144,5 +144,36 @@ export const api = {
     } catch (e) {
       return { message: 'Seed triggered' };
     }
+  },
+
+  async getDementiaReportJson(userId = 'NER-PAT-4821') {
+    try {
+      const res = await fetch(`${API_BASE}/export/report/${userId}?format=json`);
+      if (!res.ok) throw new Error('Report fetch failed');
+      return await res.json();
+    } catch (e) {
+      // Local fallback
+      return {
+        patient_profile: {
+          user_id: userId,
+          name_alias: 'Aita Hemaprabha (আইতা হেমপ্ৰভা)',
+          age_band: '70-79',
+          has_dementia: true,
+          dementia_stage: 'Mild'
+        },
+        age_and_stage_recommendations: {
+          recommended_games: [
+            { game: 'Memory Matching', level: 2, reason: 'Hippocampal spatial memory maintenance.' },
+            { game: '7+5 Mathematical Runtime Game', level: 1, reason: 'Frontal lobe executive processing.' },
+            { game: 'Daily Routine Sequence', level: 2, reason: 'Chronological grounding.' }
+          ],
+          family_audio_note_script: "Hey Grandpa/Grandma! It's your grandson speaking. Remember the crunchy chips and sweets you used to bring me after school? Everyone loves you so much!"
+        }
+      };
+    }
+  },
+
+  downloadDementiaReportTxt(userId = 'NER-PAT-4821') {
+    window.open(`${API_BASE}/export/report/${userId}?format=txt`, '_blank');
   }
 };

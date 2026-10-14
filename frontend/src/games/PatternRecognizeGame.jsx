@@ -112,7 +112,30 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
 
   const handleVoiceInput = (text) => {
     if (!text || isCorrect) return;
-    const lower = text.toLowerCase();
+    const lower = text.toLowerCase().trim();
+
+    // 1. Check for ordinal/positional requests: "select the third box", "first box", "box 2", "number 3", etc.
+    let indexSelected = -1;
+    if (lower.includes('first') || lower.includes('1st') || lower.includes('one') || lower.includes('box 1') || lower.includes('pehla') || lower.includes('prothom')) {
+      indexSelected = 0;
+    } else if (lower.includes('second') || lower.includes('2nd') || lower.includes('two') || lower.includes('box 2') || lower.includes('dusra') || lower.includes('dwitiyo')) {
+      indexSelected = 1;
+    } else if (lower.includes('third') || lower.includes('3rd') || lower.includes('three') || lower.includes('box 3') || lower.includes('teesra') || lower.includes('tritiyo')) {
+      indexSelected = 2;
+    } else if (lower.includes('fourth') || lower.includes('4th') || lower.includes('four') || lower.includes('box 4') || lower.includes('chautha')) {
+      indexSelected = 3;
+    } else if (lower.includes('fifth') || lower.includes('5th') || lower.includes('five') || lower.includes('box 5')) {
+      indexSelected = 4;
+    } else if (lower.includes('sixth') || lower.includes('6th') || lower.includes('six') || lower.includes('box 6')) {
+      indexSelected = 5;
+    }
+
+    if (indexSelected !== -1 && indexSelected < options.length) {
+      handleOptionSelect(options[indexSelected]);
+      return;
+    }
+
+    // 2. Fallback to cultural item name match
     const matched = options.find(opt => 
       lower.includes(opt.id.toLowerCase()) ||
       lower.includes(opt.label_en.toLowerCase()) ||
@@ -224,12 +247,12 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
 
       {/* Candidates Options Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(3, options.length)}, 1fr)`, gap: '1.5rem', marginBottom: '2rem' }}>
-        {options.map((opt) => {
+        {options.map((opt, idx) => {
           const isSelected = selectedId === opt.id;
           return (
             <button
               key={opt.id}
-              onClick={() => handleSelect(opt)}
+              onClick={() => handleOptionSelect(opt)}
               disabled={isCorrect}
               style={{
                 aspectRatio: '1',
@@ -242,10 +265,26 @@ export default function PatternRecognizeGame({ onBack, userId = 'NER-PAT-4821', 
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: 'var(--shadow-md)',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                position: 'relative'
               }}
-              aria-label={getLabel(opt)}
+              aria-label={`Box ${idx + 1}: ${getLabel(opt)}`}
             >
+              {/* Elderly-friendly Box Number Badge */}
+              <div style={{
+                position: 'absolute',
+                top: '12px',
+                left: '12px',
+                background: 'var(--accent-gold)',
+                color: 'white',
+                borderRadius: 'var(--radius-sm)',
+                padding: '0.2rem 0.6rem',
+                fontSize: '0.9rem',
+                fontWeight: 800
+              }}>
+                Box {idx + 1}
+              </div>
+
               <span style={{ fontSize: '4rem', marginBottom: '0.5rem' }}>{opt.icon}</span>
               <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', textAlign: 'center' }}>
                 {getLabel(opt)}

@@ -3,7 +3,7 @@ import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
 import {
-  User, Activity, Bell, AlertTriangle, CheckCircle2, TrendingUp, Clock, Award, ShieldAlert, Plus
+  User, Activity, Bell, AlertTriangle, CheckCircle2, TrendingUp, Clock, Award, ShieldAlert, Plus, Download, FileText
 } from 'lucide-react';
 import { api } from '../services/api';
 import { useI18n } from '../i18n';
@@ -205,9 +205,79 @@ export default function CaregiverDashboard({ userId = 'NER-PAT-4821' }) {
           </div>
         </div>
 
-        <button onClick={fetchData} className="btn-big btn-secondary" style={{ minHeight: '52px', fontSize: '1.1rem' }}>
-          Refresh Telemetry
-        </button>
+        {/* Report Download and Actions */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          <button
+            onClick={() => api.downloadDementiaReportTxt(userId)}
+            className="btn-big btn-primary"
+            style={{ minHeight: '52px', fontSize: '1.05rem', background: '#2563EB', borderColor: '#1D4ED8' }}
+            title="Download complete clinical dementia report with game recommendations"
+          >
+            <Download size={20} />
+            <span>Download Dementia Report (.txt)</span>
+          </button>
+
+          <button onClick={fetchData} className="btn-big btn-secondary" style={{ minHeight: '48px', fontSize: '1.05rem' }}>
+            <Activity size={20} />
+            <span>Refresh Telemetry</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Clinical Dementia Game Recommendations & Reminiscence Audio Panel */}
+      <div style={{
+        background: '#F0FDF4',
+        border: '3px solid var(--primary)',
+        borderRadius: 'var(--radius-lg)',
+        padding: '1.75rem',
+        boxShadow: 'var(--shadow-sm)'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--primary)', fontWeight: 800, fontSize: '1.35rem' }}>
+            <FileText size={26} />
+            <span>AI Dementia & Age-Calibrated Game Recommendations</span>
+          </div>
+          <span style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--primary)', background: '#DCFCE7', padding: '0.3rem 0.8rem', borderRadius: 'var(--radius-sm)' }}>
+            Age: {profile?.age_band || '70-79'} | Stage: {profile?.dementia_stage || 'Mild'}
+          </span>
+        </div>
+
+        <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', marginBottom: '1.25rem' }}>
+          Based on the citizen's age band and dementia severity rating, our AI Engine automatically calibrates game complexity, timing, and sensory cues:
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+          <div style={{ background: 'white', border: '2px solid #86EFAC', borderRadius: 'var(--radius-md)', padding: '1.2rem' }}>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span>👒</span> Memory Matching (Level {profile?.has_dementia ? (profile?.dementia_stage === 'Severe' ? 1 : 2) : 3})
+            </div>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+              {profile?.dementia_stage === 'Severe'
+                ? 'Ultra-simple 2 pairs, 4 cards. Preserves hippocampal comfort without frustration.'
+                : '3-4 cultural symbols. Reinforces spatial recall and visual recognition.'}
+            </p>
+          </div>
+
+          <div style={{ background: 'white', border: '2px solid #86EFAC', borderRadius: 'var(--radius-md)', padding: '1.2rem' }}>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span>🧮</span> 7+5 Math Runtime (Level {profile?.has_dementia ? 1 : 2})
+            </div>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+              {profile?.has_dementia
+                ? 'Generous 25s runtime with fundamental single-digit arithmetic (+).'
+                : 'Interactive timed arithmetic equations supporting frontal-lobe processing speed.'}
+            </p>
+          </div>
+
+          <div style={{ background: 'white', border: '2px solid #86EFAC', borderRadius: 'var(--radius-md)', padding: '1.2rem' }}>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span>🏡</span> Family Voice Reminiscence
+            </div>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+              For advanced age ({profile?.age_band}) and confusion episodes: Grandson voice notes ("chips & bazaar stories") ground emotional wellbeing.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Real-time KPI Metric Cards */}
